@@ -90,7 +90,7 @@ function sketch(p: p5) {
   };
 }
 
-async function main() {
+function main() {
   addEventListener("load", () => {
     new p5(sketch);
     console.log("event listener");
