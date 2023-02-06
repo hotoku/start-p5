@@ -1,4 +1,4 @@
-import Matter, { Bodies, Body, Engine, World } from "matter-js";
+import { Bodies, Body, Engine, World } from "matter-js";
 import p5 from "p5";
 
 function sketch(p: p5) {
@@ -20,6 +20,7 @@ function sketch(p: p5) {
         restitution: 0.95,
         isStatic: true,
       });
+      World.add(world, this.body);
     }
     show = () => {
       let pos = this.body.position;
@@ -64,20 +65,20 @@ function sketch(p: p5) {
     };
   }
 
-  function setup() {
+  p.setup = () => {
     p.createCanvas(400, 400);
     engine = Engine.create();
     world = engine.world;
 
     boundaries.push(new Boundary(150, 100, p.width * 0.6, 20, 0.3));
     boundaries.push(new Boundary(250, 300, p.width * 0.6, 20, -0.3));
-  }
+  };
 
-  function mouseDragged() {
+  p.mouseDragged = () => {
     circles.push(new Circle(p.mouseX, p.mouseY, p.random(5, 10)));
-  }
+  };
 
-  function draw() {
+  p.draw = () => {
     p.background(180);
     Engine.update(engine);
     for (let i = 0; i < circles.length; i++) {
@@ -86,7 +87,7 @@ function sketch(p: p5) {
     for (let i = 0; i < boundaries.length; i++) {
       boundaries[i].show();
     }
-  }
+  };
 }
 
 new p5(sketch);
