@@ -1,23 +1,27 @@
-/*
- * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
 var myIndex;
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/index.ts":
-/*!**********************!*\
-  !*** ./src/index.ts ***!
-  \**********************/
+/***/ 607:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var p5__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! p5 */ \"./node_modules/p5/lib/p5.min.js\");\n/* harmony import */ var p5__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(p5__WEBPACK_IMPORTED_MODULE_0__);\n\nconsole.log(\"index.ts\");\nconst sketch = (p) => {\n    p.setup = () => {\n        p.createCanvas(400, 400);\n    };\n    p.draw = () => {\n        p.background(220);\n        p.ellipse(50, 50, 80, 80);\n    };\n};\nnew (p5__WEBPACK_IMPORTED_MODULE_0___default())(sketch);\n\n\n//# sourceURL=webpack://myIndex/./src/index.ts?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var p5__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(35);
+/* harmony import */ var p5__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(p5__WEBPACK_IMPORTED_MODULE_0__);
+
+console.log("index.ts");
+const sketch = (p) => {
+    p.setup = () => {
+        p.createCanvas(400, 400);
+    };
+    p.draw = () => {
+        p.background(220);
+        p.ellipse(50, 50, 80, 80);
+    };
+};
+new (p5__WEBPACK_IMPORTED_MODULE_0___default())(sketch);
+
 
 /***/ })
 
@@ -143,7 +147,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var p5__
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"index": 0
+/******/ 			826: 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -193,7 +197,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var p5__
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_p5_lib_p5_min_js"], () => (__webpack_require__("./src/index.ts")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [35], () => (__webpack_require__(607)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	myIndex = __webpack_exports__;
 /******/ 	
