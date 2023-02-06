@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon",
-    "build": "webpack --mode production",
+    "build": "webpack --mode development",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
