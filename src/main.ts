@@ -1,60 +1,27 @@
-import Matter, { Body } from "matter-js";
+import Matter, { Bodies, Body, Engine, World } from "matter-js";
 import p5 from "p5";
 
-type Options = {
-  friction: number;
-  restitution: number;
-  angle: number;
-  isStatic: boolean;
-};
-
-class Boundary {
-  body: Body;
-  x: number;
-  y: number;
-  w: number;
-  h: number;
-  options: Options;
-  constructor(x: number, y: number, w: number, h: number, a: number) {
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
-    this.options = {
-      friction: 0,
-      restitution: 0.95,
-      angle: a,
-      isStatic: true,
-    };
-  }
-}
-
 function sketch(p: p5) {
-  let Engine = Matter.Engine,
-    World = Matter.World,
-    Bodies = Matter.Bodies;
+  let engine: Engine;
+  let world: World;
+  let circles: Circle[] = [];
+  let boundaries: Boundary[] = [];
 
-  let engine;
-  let world;
-  let circles = [];
-  let boundaries = [];
-
-  let ground;
-
-  function Boundary(x, y, w, h, a) {
-    let options = {
-      friction: 0,
-      restitution: 0.95,
-      angle: a,
-      isStatic: true,
-    };
-    this.body = Bodies.rectangle(x, y, w, h, options);
-    this.w = w;
-    this.h = h;
-    World.add(world, this.body);
-    console.log(this.body);
-
-    this.show = function () {
+  class Boundary {
+    body: Body;
+    w: number;
+    h: number;
+    constructor(x: number, y: number, w: number, h: number, a: number) {
+      this.w = w;
+      this.h = h;
+      this.body = Bodies.rectangle(x, y, w, h, {
+        angle: a,
+        friction: 0,
+        restitution: 0.95,
+        isStatic: true,
+      });
+    }
+    show = () => {
       let pos = this.body.position;
       let angle = this.body.angle;
       p.push();
@@ -69,6 +36,34 @@ function sketch(p: p5) {
     };
   }
 
+  class Circle {
+    body: Body;
+    r: number;
+
+    constructor(x: number, y: number, r: number) {
+      this.r = r;
+      this.body = Bodies.circle(x, y, r, {
+        friction: 0,
+        restitution: 0.95,
+      });
+      World.add(world, this.body);
+    }
+
+    show = () => {
+      let pos = this.body.position;
+      let angle = this.body.angle;
+      p.push();
+      p.translate(pos.x, pos.y);
+      p.rotate(angle);
+      p.rectMode(p.CENTER);
+      p.strokeWeight(1);
+      p.stroke(255);
+      p.fill(0, 0, 80);
+      p.ellipse(0, 0, this.r * 2);
+      p.pop();
+    };
+  }
+
   function setup() {
     p.createCanvas(400, 400);
     engine = Engine.create();
@@ -79,11 +74,11 @@ function sketch(p: p5) {
   }
 
   function mouseDragged() {
-    circles.push(new Circle(mouseX, mouseY, random(5, 10)));
+    circles.push(new Circle(p.mouseX, p.mouseY, p.random(5, 10)));
   }
 
   function draw() {
-    background(180);
+    p.background(180);
     Engine.update(engine);
     for (let i = 0; i < circles.length; i++) {
       circles[i].show();
@@ -91,30 +86,6 @@ function sketch(p: p5) {
     for (let i = 0; i < boundaries.length; i++) {
       boundaries[i].show();
     }
-  }
-
-  function Circle(x, y, r) {
-    let options = {
-      friction: 0,
-      restitution: 0.95,
-    };
-    this.body = Bodies.circle(x, y, r, options);
-    this.r = r;
-    World.add(world, this.body);
-
-    this.show = function () {
-      let pos = this.body.position;
-      let angle = this.body.angle;
-      push();
-      translate(pos.x, pos.y);
-      rotate(angle);
-      rectMode(CENTER);
-      strokeWeight(1);
-      stroke(255);
-      fill(0, 0, 80);
-      ellipse(0, 0, this.r * 2);
-      pop();
-    };
   }
 }
 
